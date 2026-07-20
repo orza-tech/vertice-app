@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/ui/Button";
 
 function fallbackCopy(text: string): boolean {
   const textarea = document.createElement("textarea");
@@ -41,12 +42,12 @@ export function CopyLinkButton({ url }: { url: string }) {
         : "Copiar link do formulário";
 
   return (
-    <button
+    <Button
+      variant="secondary"
       onClick={handleCopy}
       title={state === "failed" ? "Copie manualmente" : undefined}
-      className="rounded-lg border border-vertice-ink/20 px-4 py-2.5 text-sm text-vertice-ink/70 transition hover:border-vertice-ink/40"
     >
       {label}
-    </button>
+    </Button>
   );
 }

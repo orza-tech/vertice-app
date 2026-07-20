@@ -33,25 +33,29 @@ export function LeadsBoard({ initialLeads }: { initialLeads: Lead[] }) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex gap-2">
+        <div className="flex gap-2" role="tablist" aria-label="Funil">
           {FUNIS.map((f) => (
             <button
               key={f.key}
+              role="tab"
+              aria-selected={funilKey === f.key}
               onClick={() => setFunilKey(f.key)}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition ${
+              className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vertice-teal focus-visible:ring-offset-2 focus-visible:ring-offset-vertice-bg ${
                 funilKey === f.key
                   ? "bg-vertice-ink text-vertice-bg"
-                  : "bg-white text-vertice-ink/60 hover:text-vertice-ink"
+                  : "bg-vertice-surface text-vertice-ink/60 hover:text-vertice-ink"
               }`}
             >
               {f.label}
             </button>
           ))}
         </div>
-        <div className="flex gap-1 rounded-lg bg-white p-1">
+        <div className="flex gap-1 rounded-lg bg-vertice-surface p-1" role="tablist" aria-label="Visualização">
           <button
+            role="tab"
+            aria-selected={view === "lista"}
             onClick={() => setView("lista")}
-            className={`rounded-md px-3 py-1.5 text-sm transition ${
+            className={`rounded-md px-3 py-1.5 text-sm transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vertice-teal ${
               view === "lista"
                 ? "bg-vertice-ink/10 text-vertice-ink"
                 : "text-vertice-ink/50 hover:text-vertice-ink"
@@ -60,8 +64,10 @@ export function LeadsBoard({ initialLeads }: { initialLeads: Lead[] }) {
             Lista
           </button>
           <button
+            role="tab"
+            aria-selected={view === "kanban"}
             onClick={() => setView("kanban")}
-            className={`rounded-md px-3 py-1.5 text-sm transition ${
+            className={`rounded-md px-3 py-1.5 text-sm transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vertice-teal ${
               view === "kanban"
                 ? "bg-vertice-ink/10 text-vertice-ink"
                 : "text-vertice-ink/50 hover:text-vertice-ink"

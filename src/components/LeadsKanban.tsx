@@ -16,10 +16,10 @@ function KanbanColumn({
   return (
     <div
       ref={setNodeRef}
-      className={`flex min-h-[200px] flex-col gap-3 rounded-2xl border p-3 transition ${
+      className={`flex min-h-[200px] flex-col gap-3 rounded-2xl border p-3 transition-colors duration-150 ${
         isOver
-          ? "border-vertice-teal bg-vertice-teal/5"
-          : "border-vertice-ink/10 bg-vertice-ink/[0.02]"
+          ? "border-vertice-teal bg-vertice-teal-subtle"
+          : "border-vertice-border bg-vertice-ink/[0.02]"
       }`}
     >
       <div className="flex items-center justify-between px-1">
@@ -32,6 +32,11 @@ function KanbanColumn({
         {leads.map((lead) => (
           <LeadCard key={lead.id} lead={lead} />
         ))}
+        {leads.length === 0 && (
+          <p className="rounded-lg border border-dashed border-vertice-border px-3 py-4 text-center text-xs text-vertice-ink/35">
+            Arraste um card pra cá
+          </p>
+        )}
       </div>
     </div>
   );

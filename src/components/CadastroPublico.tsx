@@ -10,9 +10,9 @@ export function CadastroPublico() {
 
   if (submitted) {
     return (
-      <div className="flex w-full max-w-md flex-col items-center gap-4 rounded-2xl bg-vertice-bg p-10 text-center shadow-xl">
+      <div className="animate-reveal flex flex-col items-center gap-4 text-center">
         <VerticeLogo className="mb-4" />
-        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-vertice-teal/15 text-2xl text-vertice-teal-deep">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-vertice-teal-subtle text-2xl text-vertice-teal-pressed">
           ✓
         </div>
         <h1 className="text-xl font-semibold">Cadastro recebido!</h1>
@@ -25,7 +25,7 @@ export function CadastroPublico() {
   }
 
   return (
-    <div className="w-full max-w-md rounded-2xl bg-vertice-bg p-8 shadow-xl">
+    <div>
       <VerticeLogo className="mb-8" />
       <h1 className="mb-1 text-center text-lg font-semibold">
         Quero conhecer o Vértice

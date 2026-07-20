@@ -1,21 +1,65 @@
 @import "tailwindcss";
 
 :root {
+  /* Brand — authoritative values from the Vértice identity manual. */
   --vertice-ink: #1a1a1a;
   --vertice-teal: #00bbbd;
   --vertice-teal-deep: #05abac;
   --vertice-bg: #faf7f0;
+
+  /* Derived surface & state tokens — computed from the brand values above,
+     so the palette stays anchored to the manual instead of drifting. */
+  --vertice-surface: #ffffff;
+  --vertice-border: color-mix(in oklch, var(--vertice-ink) 12%, var(--vertice-bg));
+  --vertice-border-strong: color-mix(in oklch, var(--vertice-ink) 24%, var(--vertice-bg));
+  --vertice-teal-subtle: color-mix(in oklch, var(--vertice-teal) 12%, white);
+  --vertice-teal-pressed: color-mix(in oklch, var(--vertice-teal-deep) 82%, black);
+
+  --vertice-danger: #b3261e;
+  --vertice-danger-subtle: color-mix(in oklch, var(--vertice-danger) 8%, white);
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 @theme inline {
   --color-vertice-ink: var(--vertice-ink);
   --color-vertice-teal: var(--vertice-teal);
   --color-vertice-teal-deep: var(--vertice-teal-deep);
+  --color-vertice-teal-subtle: var(--vertice-teal-subtle);
+  --color-vertice-teal-pressed: var(--vertice-teal-pressed);
   --color-vertice-bg: var(--vertice-bg);
+  --color-vertice-surface: var(--vertice-surface);
+  --color-vertice-border: var(--vertice-border);
+  --color-vertice-border-strong: var(--vertice-border-strong);
+  --color-vertice-danger: var(--vertice-danger);
+  --color-vertice-danger-subtle: var(--vertice-danger-subtle);
   --font-sans: var(--font-montserrat);
 }
 
 body {
   background: var(--vertice-bg);
   color: var(--vertice-ink);
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-reveal {
+  animation: reveal 300ms var(--ease-out-quart) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

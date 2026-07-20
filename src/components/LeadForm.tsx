@@ -12,11 +12,9 @@ import {
 } from "@/lib/leads/schema";
 import type { CreateLeadResult } from "@/lib/leads/actions";
 import type { Canal } from "@/lib/canais/actions";
-
-const inputClasses =
-  "w-full rounded-lg border border-vertice-ink/15 bg-white px-4 py-2.5 text-sm text-vertice-ink placeholder:text-vertice-ink/40 focus:outline-none focus:ring-2 focus:ring-vertice-teal";
-
-const labelClasses = "text-sm font-medium text-vertice-ink/80";
+import { Field, SelectInput, TextInput } from "@/components/ui/Field";
+import { Alert } from "@/components/ui/Alert";
+import { Button } from "@/components/ui/Button";
 
 export function LeadForm({
   onSubmitLead,
@@ -58,79 +56,52 @@ export function LeadForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <div className="flex flex-col gap-1.5">
-        <label className={labelClasses} htmlFor="nome_contato">
-          Nome completo
-        </label>
-        <input
+      <Field label="Nome completo" htmlFor="nome_contato" error={errors.nome_contato?.message}>
+        <TextInput
           id="nome_contato"
-          className={inputClasses}
           placeholder="Como podemos te chamar?"
+          error={Boolean(errors.nome_contato)}
           {...register("nome_contato")}
         />
-        {errors.nome_contato && (
-          <p className="text-xs text-red-600">{errors.nome_contato.message}</p>
-        )}
-      </div>
+      </Field>
 
-      <div className="flex flex-col gap-1.5">
-        <label className={labelClasses} htmlFor="nome_empresa">
-          Nome da empresa
-        </label>
-        <input
+      <Field label="Nome da empresa" htmlFor="nome_empresa" error={errors.nome_empresa?.message}>
+        <TextInput
           id="nome_empresa"
-          className={inputClasses}
           placeholder="Razão social ou nome fantasia"
+          error={Boolean(errors.nome_empresa)}
           {...register("nome_empresa")}
         />
-        {errors.nome_empresa && (
-          <p className="text-xs text-red-600">{errors.nome_empresa.message}</p>
-        )}
-      </div>
+      </Field>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5">
-          <label className={labelClasses} htmlFor="email">
-            E-mail
-          </label>
-          <input
+        <Field label="E-mail" htmlFor="email" error={errors.email?.message}>
+          <TextInput
             id="email"
             type="email"
-            className={inputClasses}
             placeholder="voce@empresa.com"
+            error={Boolean(errors.email)}
             {...register("email")}
           />
-          {errors.email && (
-            <p className="text-xs text-red-600">{errors.email.message}</p>
-          )}
-        </div>
+        </Field>
 
-        <div className="flex flex-col gap-1.5">
-          <label className={labelClasses} htmlFor="whatsapp">
-            WhatsApp
-          </label>
-          <input
+        <Field label="WhatsApp" htmlFor="whatsapp" error={errors.whatsapp?.message}>
+          <TextInput
             id="whatsapp"
             type="tel"
-            className={inputClasses}
             placeholder="(11) 99999-9999"
+            error={Boolean(errors.whatsapp)}
             {...register("whatsapp")}
           />
-          {errors.whatsapp && (
-            <p className="text-xs text-red-600">{errors.whatsapp.message}</p>
-          )}
-        </div>
+        </Field>
       </div>
 
       {showCanalField ? (
-        <div className="flex flex-col gap-1.5">
-          <label className={labelClasses} htmlFor="canal">
-            Canal
-          </label>
-          <select
+        <Field label="Canal" htmlFor="canal" error={errors.canal?.message}>
+          <SelectInput
             id="canal"
-            className={inputClasses}
             defaultValue=""
+            error={Boolean(errors.canal)}
             {...register("canal")}
           >
             <option value="" disabled>
@@ -141,23 +112,21 @@ export function LeadForm({
                 {c.nome}
               </option>
             ))}
-          </select>
-          {errors.canal && (
-            <p className="text-xs text-red-600">{errors.canal.message}</p>
-          )}
-        </div>
+          </SelectInput>
+        </Field>
       ) : (
         <input type="hidden" {...register("canal")} />
       )}
 
-      <div className="flex flex-col gap-1.5">
-        <label className={labelClasses} htmlFor="faturamento_range">
-          Faturamento mensal
-        </label>
-        <select
+      <Field
+        label="Faturamento mensal"
+        htmlFor="faturamento_range"
+        error={errors.faturamento_range && "Selecione uma faixa de faturamento"}
+      >
+        <SelectInput
           id="faturamento_range"
-          className={inputClasses}
           defaultValue=""
+          error={Boolean(errors.faturamento_range)}
           {...register("faturamento_range")}
         >
           <option value="" disabled>
@@ -168,20 +137,18 @@ export function LeadForm({
               {o.label}
             </option>
           ))}
-        </select>
-        {errors.faturamento_range && (
-          <p className="text-xs text-red-600">Selecione uma faixa de faturamento</p>
-        )}
-      </div>
+        </SelectInput>
+      </Field>
 
-      <div className="flex flex-col gap-1.5">
-        <label className={labelClasses} htmlFor="funcionarios_range">
-          Quantidade de funcionários
-        </label>
-        <select
+      <Field
+        label="Quantidade de funcionários"
+        htmlFor="funcionarios_range"
+        error={errors.funcionarios_range && "Selecione uma faixa de funcionários"}
+      >
+        <SelectInput
           id="funcionarios_range"
-          className={inputClasses}
           defaultValue=""
+          error={Boolean(errors.funcionarios_range)}
           {...register("funcionarios_range")}
         >
           <option value="" disabled>
@@ -192,20 +159,18 @@ export function LeadForm({
               {o.label}
             </option>
           ))}
-        </select>
-        {errors.funcionarios_range && (
-          <p className="text-xs text-red-600">Selecione uma faixa de funcionários</p>
-        )}
-      </div>
+        </SelectInput>
+      </Field>
 
-      <div className="flex flex-col gap-1.5">
-        <label className={labelClasses} htmlFor="tempo_empresa_range">
-          Tempo de empresa
-        </label>
-        <select
+      <Field
+        label="Tempo de empresa"
+        htmlFor="tempo_empresa_range"
+        error={errors.tempo_empresa_range && "Selecione o tempo de empresa"}
+      >
+        <SelectInput
           id="tempo_empresa_range"
-          className={inputClasses}
           defaultValue=""
+          error={Boolean(errors.tempo_empresa_range)}
           {...register("tempo_empresa_range")}
         >
           <option value="" disabled>
@@ -216,30 +181,15 @@ export function LeadForm({
               {o.label}
             </option>
           ))}
-        </select>
-        {errors.tempo_empresa_range && (
-          <p className="text-xs text-red-600">Selecione o tempo de empresa</p>
-        )}
-      </div>
+        </SelectInput>
+      </Field>
 
-      {serverError && (
-        <p className="rounded-lg bg-red-50 px-4 py-2 text-sm text-red-700">
-          {serverError}
-        </p>
-      )}
-      {success && (
-        <p className="rounded-lg bg-vertice-teal/10 px-4 py-2 text-sm text-vertice-teal-deep">
-          Cadastro realizado com sucesso!
-        </p>
-      )}
+      {serverError && <Alert variant="error">{serverError}</Alert>}
+      {success && <Alert variant="success">Cadastro realizado com sucesso!</Alert>}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="mt-2 rounded-lg bg-vertice-ink px-4 py-3 text-sm font-semibold uppercase tracking-wide text-vertice-bg transition hover:bg-vertice-teal-deep disabled:opacity-60"
-      >
+      <Button type="submit" disabled={isSubmitting} className="mt-2">
         {isSubmitting ? "Enviando..." : submitLabel}
-      </button>
+      </Button>
     </form>
   );
 }

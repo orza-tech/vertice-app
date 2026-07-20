@@ -1,25 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LeadForm } from "@/components/LeadForm";
 import { createLeadManual } from "@/lib/leads/actions";
 import type { Canal } from "@/lib/canais/actions";
+import { Button } from "@/components/ui/Button";
 
 export function AddLeadModal({ canais }: { canais: Canal[] }) {
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (!open) return;
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
+
   return (
     <>
-      <button
-        onClick={() => setOpen(true)}
-        className="rounded-lg bg-vertice-teal-deep px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-vertice-ink"
-      >
+      <Button variant="accent" onClick={() => setOpen(true)}>
         + Adicionar lead
-      </button>
+      </Button>
 
       {open && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-vertice-ink/60 px-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="add-lead-title"
+          className="animate-reveal fixed inset-0 z-50 flex items-center justify-center bg-vertice-ink/60 px-4"
           onClick={() => setOpen(false)}
         >
           <div
@@ -27,11 +37,13 @@ export function AddLeadModal({ canais }: { canais: Canal[] }) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-lg font-semibold">Novo lead</h2>
+              <h2 id="add-lead-title" className="text-lg font-semibold">
+                Novo lead
+              </h2>
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Fechar"
-                className="text-vertice-ink/50 hover:text-vertice-ink"
+                className="rounded-md p-1 text-vertice-ink/50 transition-colors duration-150 hover:text-vertice-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vertice-teal"
               >
                 ✕
               </button>
