@@ -7,6 +7,7 @@ export function updateSessionMock(request: NextRequest) {
   const isPublicRoute =
     request.nextUrl.pathname.startsWith("/cadastro") ||
     request.nextUrl.pathname.startsWith("/login") ||
+    request.nextUrl.pathname.startsWith("/signup") ||
     request.nextUrl.pathname.startsWith("/auth");
 
   if (!session && !isPublicRoute) {

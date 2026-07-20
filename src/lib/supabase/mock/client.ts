@@ -3,6 +3,7 @@ import { readTable, writeTable } from "@/lib/supabase/mock/store";
 import { MOCK_SESSION_COOKIE, MOCK_TEAM_USERS } from "@/lib/supabase/mock/constants";
 
 type Row = Record<string, unknown> & { id: string; created_at: string };
+type MockUser = { email: string; password: string };
 
 export async function createMockClient() {
   const cookieStore = await cookies();
@@ -69,7 +70,8 @@ export async function createMockClient() {
         return { data: { user: session ? { id: session, email: session } : null } };
       },
       async signInWithPassword({ email, password }: { email: string; password: string }) {
-        const match = MOCK_TEAM_USERS.find(
+        const signedUpUsers = readTable<MockUser>("mock_team_users");
+        const match = [...MOCK_TEAM_USERS, ...signedUpUsers].find(
           (u) => u.email === email && u.password === password
         );
         if (!match) {
@@ -81,6 +83,25 @@ export async function createMockClient() {
           path: "/",
         });
         return { error: null as null };
+      },
+      async signUp({ email, password }: { email: string; password: string }) {
+        const signedUpUsers = readTable<MockUser>("mock_team_users");
+        if (
+          [...MOCK_TEAM_USERS, ...signedUpUsers].some((u) => u.email === email)
+        ) {
+          return {
+            data: { session: null },
+            error: { message: "E-mail já cadastrado" },
+          };
+        }
+        signedUpUsers.push({ email, password });
+        writeTable("mock_team_users", signedUpUsers);
+        cookieStore.set(MOCK_SESSION_COOKIE, email, {
+          httpOnly: true,
+          sameSite: "lax",
+          path: "/",
+        });
+        return { data: { session: { user: { email } } }, error: null as null };
       },
       async signOut() {
         cookieStore.delete(MOCK_SESSION_COOKIE);
