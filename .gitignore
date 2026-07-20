@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local mock data (dev-only, replaced once Supabase is connected)
+/.mock-data
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
