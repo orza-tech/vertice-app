@@ -39,6 +39,9 @@ yarn-error.log*
 # local mock data (dev-only, replaced once Supabase is connected)
 /.mock-data
 
+# supabase CLI local cache (project link metadata, no secrets)
+/supabase/.temp
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

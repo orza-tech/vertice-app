@@ -90,13 +90,29 @@ export async function createDealPublico(values: unknown): Promise<ActionResult> 
     return { ok: false, error: "Dados inválidos. Confira os campos e tente novamente." };
   }
 
+  const { data: fieldRows } = await supabase
+    .from("field_definitions")
+    .select("*")
+    .eq("pipeline_id", target.pipeline.id);
+  const camposSchema = buildCamposPersonalizadosSchema(
+    (fieldRows ?? []) as FieldDefinition[]
+  );
+  const rawCampos =
+    typeof values === "object" && values !== null
+      ? ((values as { campos?: unknown }).campos ?? {})
+      : {};
+  const parsedCampos = camposSchema.safeParse(rawCampos);
+  if (!parsedCampos.success) {
+    return { ok: false, error: "Confira os campos preenchidos." };
+  }
+
   const dealId = crypto.randomUUID();
   const { error } = await supabase.from("deals").insert({
     id: dealId,
     ...parsed.data,
     pipeline_id: target.pipeline.id,
     stage_id: target.stage.id,
-    campos_personalizados: {},
+    campos_personalizados: parsedCampos.data,
     origem: "publico",
   });
 
