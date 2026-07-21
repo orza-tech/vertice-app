@@ -1,12 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LeadForm } from "@/components/LeadForm";
-import { createLeadManual } from "@/lib/leads/actions";
+import { DealForm } from "@/components/crm/DealForm";
+import { createDeal } from "@/lib/crm/deals-actions";
+import type { FieldDefinition } from "@/lib/crm/schema";
 import type { Canal } from "@/lib/canais/actions";
 import { Button } from "@/components/ui/Button";
 
-export function AddLeadModal({ canais }: { canais: Canal[] }) {
+export function AddDealModal({
+  pipelineId,
+  fields,
+  canais,
+}: {
+  pipelineId: string;
+  fields: FieldDefinition[];
+  canais: Canal[];
+}) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -21,14 +30,14 @@ export function AddLeadModal({ canais }: { canais: Canal[] }) {
   return (
     <>
       <Button variant="accent" onClick={() => setOpen(true)}>
-        + Adicionar lead
+        + Adicionar negócio
       </Button>
 
       {open && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-labelledby="add-lead-title"
+          aria-labelledby="add-deal-title"
           className="animate-reveal fixed inset-0 z-50 flex items-center justify-center bg-vertice-ink/60 px-4"
           onClick={() => setOpen(false)}
         >
@@ -37,8 +46,8 @@ export function AddLeadModal({ canais }: { canais: Canal[] }) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mb-4 flex items-center justify-between">
-              <h2 id="add-lead-title" className="text-lg font-semibold">
-                Novo lead
+              <h2 id="add-deal-title" className="text-lg font-semibold">
+                Novo negócio
               </h2>
               <button
                 onClick={() => setOpen(false)}
@@ -48,11 +57,12 @@ export function AddLeadModal({ canais }: { canais: Canal[] }) {
                 ✕
               </button>
             </div>
-            <LeadForm
-              onSubmitLead={createLeadManual}
-              submitLabel="Salvar lead"
-              onSuccess={() => setOpen(false)}
+            <DealForm
+              onSubmitDeal={(values) => createDeal(pipelineId, values)}
+              fields={fields}
               canais={canais}
+              submitLabel="Salvar negócio"
+              onSuccess={() => setOpen(false)}
             />
           </div>
         </div>

@@ -13,18 +13,41 @@ export async function createMockClient() {
       return {
         select(_columns?: string) {
           void _columns;
-          return {
-            async order(column: string, opts?: { ascending?: boolean }) {
-              const rows = readTable<Row>(table).sort((a, b) => {
+          let rows = readTable<Row>(table);
+
+          type SelectResult = { data: Row[]; error: null };
+          type Builder = {
+            eq(column: string, value: unknown): Builder;
+            order(column: string, opts?: { ascending?: boolean }): Builder;
+            then<T1, T2 = never>(
+              onFulfilled: (value: SelectResult) => T1 | PromiseLike<T1>,
+              onRejected?: (reason: unknown) => T2 | PromiseLike<T2>
+            ): Promise<T1 | T2>;
+          };
+
+          const builder: Builder = {
+            eq(column, value) {
+              rows = rows.filter((r) => r[column] === value);
+              return builder;
+            },
+            order(column, opts) {
+              rows = [...rows].sort((a, b) => {
                 const av = String(a[column]);
                 const bv = String(b[column]);
                 if (av === bv) return 0;
                 const dir = opts?.ascending === false ? -1 : 1;
                 return av > bv ? dir : -dir;
               });
-              return { data: rows, error: null as null };
+              return builder;
+            },
+            then(onFulfilled, onRejected) {
+              return Promise.resolve({ data: rows, error: null }).then(
+                onFulfilled,
+                onRejected
+              );
             },
           };
+          return builder;
         },
         async insert(row: Record<string, unknown>) {
           const rows = readTable<Row>(table);

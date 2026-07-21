@@ -1,18 +1,17 @@
 import Link from "next/link";
 import { headers } from "next/headers";
-import { createClient } from "@/lib/supabase/server";
 import { getCanais } from "@/lib/canais/actions";
-import { AddLeadModal } from "@/components/AddLeadModal";
+import { getPipelinesWithDetails } from "@/lib/crm/config-actions";
+import { getDeals } from "@/lib/crm/deals-actions";
 import { CopyLinkButton } from "@/components/CopyLinkButton";
-import { LeadsBoard } from "@/components/LeadsBoard";
+import { DealsBoard } from "@/components/crm/DealsBoard";
 import { VerticeLogo } from "@/components/VerticeLogo";
 import { signOut } from "@/lib/auth/actions";
 import { Button } from "@/components/ui/Button";
 import { buttonClasses } from "@/components/ui/buttonStyles";
-import type { Lead } from "@/lib/leads/schema";
 
 export const metadata = {
-  title: "Leads | Vértice",
+  title: "Negócios | Vértice",
 };
 
 async function getPublicCadastroUrl() {
@@ -23,12 +22,9 @@ async function getPublicCadastroUrl() {
 }
 
 export default async function LeadsPage() {
-  const supabase = await createClient();
-  const [{ data: leads }, publicUrl, canais] = await Promise.all([
-    supabase
-      .from("leads")
-      .select("*")
-      .order("created_at", { ascending: false }),
+  const [pipelines, deals, publicUrl, canais] = await Promise.all([
+    getPipelinesWithDetails(),
+    getDeals(),
     getPublicCadastroUrl(),
     getCanais(),
   ]);
@@ -38,8 +34,13 @@ export default async function LeadsPage() {
       <header className="flex flex-wrap items-center justify-between gap-4">
         <VerticeLogo size="sm" className="items-start text-left" />
         <div className="flex items-center gap-3">
-          <AddLeadModal canais={canais} />
           <CopyLinkButton url={publicUrl} />
+          <Link href="/dashboard" className={buttonClasses("secondary")}>
+            Dashboard
+          </Link>
+          <Link href="/configuracoes" className={buttonClasses("secondary")}>
+            Configurações
+          </Link>
           <Link href="/canais" className={buttonClasses("secondary")}>
             Canais
           </Link>
@@ -49,7 +50,7 @@ export default async function LeadsPage() {
         </div>
       </header>
 
-      <LeadsBoard initialLeads={(leads ?? []) as Lead[]} />
+      <DealsBoard pipelines={pipelines} initialDeals={deals} canais={canais} />
     </main>
   );
 }

@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { LeadForm } from "@/components/LeadForm";
+import { DealForm } from "@/components/crm/DealForm";
 import { VerticeLogo } from "@/components/VerticeLogo";
-import { createLeadPublico } from "@/lib/leads/actions";
+import { createDealPublico } from "@/lib/crm/deals-actions";
+import type { FieldDefinition } from "@/lib/crm/schema";
 
-export function CadastroPublico() {
+export function CadastroPublico({ fields }: { fields: FieldDefinition[] }) {
   const [submitted, setSubmitted] = useState(false);
 
   if (submitted) {
@@ -33,8 +34,9 @@ export function CadastroPublico() {
       <p className="mb-6 text-center text-sm text-vertice-ink/60">
         Preencha seus dados e nossa equipe entra em contato.
       </p>
-      <LeadForm
-        onSubmitLead={createLeadPublico}
+      <DealForm
+        onSubmitDeal={createDealPublico}
+        fields={fields}
         submitLabel="Enviar cadastro"
         onSuccess={() => setSubmitted(true)}
       />

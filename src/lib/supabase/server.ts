@@ -4,7 +4,11 @@ import { createMockClient } from "@/lib/supabase/mock/client";
 
 export async function createClient() {
   if (process.env.USE_MOCK_DATA === "true") {
-    return createMockClient();
+    // O cliente mock imita só o subconjunto da API do Supabase que
+    // usamos. O cast evita que o TypeScript tente unificar o tipo
+    // genérico recursivo do mock com o tipo (também genérico e
+    // profundo) do supabase-js real, o que trava o checker.
+    return createMockClient() as unknown as ReturnType<typeof createServerClient>;
   }
 
   const cookieStore = await cookies();
