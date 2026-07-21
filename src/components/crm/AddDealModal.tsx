@@ -52,7 +52,7 @@ export function AddDealModal({
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Fechar"
-                className="rounded-md p-1 text-vertice-ink/50 transition-colors duration-150 hover:text-vertice-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vertice-teal"
+                className="rounded-md p-1 text-vertice-ink/68 transition-colors duration-150 hover:text-vertice-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vertice-teal"
               >
                 ✕
               </button>

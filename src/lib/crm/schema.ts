@@ -7,13 +7,13 @@ export const FIELD_TIPOS = ["texto", "numero", "selecao", "data"] as const;
 export type FieldTipo = (typeof FIELD_TIPOS)[number];
 
 export const STAGE_COLOR_OPTIONS = [
-  { value: "cinza", label: "Cinza", classes: "bg-vertice-ink/10 text-vertice-ink/70" },
-  { value: "azul", label: "Azul", classes: "bg-blue-100 text-blue-700" },
-  { value: "teal", label: "Teal", classes: "bg-vertice-teal-subtle text-vertice-teal-pressed" },
-  { value: "ambar", label: "Âmbar", classes: "bg-amber-100 text-amber-700" },
-  { value: "roxo", label: "Roxo", classes: "bg-purple-100 text-purple-700" },
-  { value: "verde", label: "Verde", classes: "bg-green-100 text-green-700" },
-  { value: "vermelho", label: "Vermelho", classes: "bg-red-100 text-red-700" },
+  { value: "cinza", label: "Cinza", classes: "bg-vertice-ink/10 text-vertice-ink/70", dot: "bg-vertice-ink/40" },
+  { value: "azul", label: "Azul", classes: "bg-blue-100 text-blue-700", dot: "bg-blue-500" },
+  { value: "teal", label: "Teal", classes: "bg-vertice-teal-subtle text-vertice-teal-pressed", dot: "bg-vertice-teal" },
+  { value: "ambar", label: "Âmbar", classes: "bg-amber-100 text-amber-700", dot: "bg-amber-500" },
+  { value: "roxo", label: "Roxo", classes: "bg-purple-100 text-purple-700", dot: "bg-purple-500" },
+  { value: "verde", label: "Verde", classes: "bg-green-100 text-green-700", dot: "bg-green-500" },
+  { value: "vermelho", label: "Vermelho", classes: "bg-red-100 text-red-700", dot: "bg-red-500" },
 ] as const;
 
 export function stageColorClasses(cor: string) {

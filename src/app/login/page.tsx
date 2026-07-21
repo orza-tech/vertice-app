@@ -40,7 +40,7 @@ export default function LoginPage() {
           {isPending ? "Entrando..." : "Entrar"}
         </Button>
       </form>
-      <p className="mt-4 text-center text-sm text-vertice-ink/60">
+      <p className="mt-4 text-center text-sm text-vertice-ink/68">
         Ainda não tem conta?{" "}
         <Link href="/signup" className="text-vertice-teal-deep underline">
           Criar conta

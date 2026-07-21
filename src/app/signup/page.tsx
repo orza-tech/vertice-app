@@ -52,7 +52,7 @@ export default function SignupPage() {
           {isPending ? "Criando..." : "Criar conta"}
         </Button>
       </form>
-      <p className="mt-4 text-center text-sm text-vertice-ink/60">
+      <p className="mt-4 text-center text-sm text-vertice-ink/68">
         Já tem conta?{" "}
         <Link href="/login" className="text-vertice-teal-deep underline">
           Entrar

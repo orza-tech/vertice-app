@@ -11,7 +11,7 @@ const variants: Record<ButtonVariant, string> = {
   secondary:
     "px-4 py-2.5 border border-vertice-border-strong text-vertice-ink/70 hover:border-vertice-ink/40 hover:text-vertice-ink active:bg-vertice-ink/5",
   "ghost-danger":
-    "px-2 py-1 text-xs text-vertice-ink/40 hover:text-vertice-danger active:text-vertice-danger",
+    "px-2 py-1 text-xs text-vertice-ink/68 hover:text-vertice-danger active:text-vertice-danger",
 };
 
 export function buttonClasses(variant: ButtonVariant = "primary", className = "") {

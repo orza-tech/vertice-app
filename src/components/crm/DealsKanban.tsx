@@ -28,14 +28,14 @@ function KanbanColumn({
         <h3 className={`rounded-full px-2 py-0.5 text-xs font-semibold uppercase tracking-wide ${stageColorClasses(stage.cor)}`}>
           {stage.nome}
         </h3>
-        <span className="text-xs text-vertice-ink/40">{deals.length}</span>
+        <span className="text-xs text-vertice-ink/68">{deals.length}</span>
       </div>
       <div className="flex flex-col gap-2">
         {deals.map((deal) => (
           <DealCard key={deal.id} deal={deal} fields={fields} />
         ))}
         {deals.length === 0 && (
-          <p className="rounded-lg border border-dashed border-vertice-border px-3 py-4 text-center text-xs text-vertice-ink/35">
+          <p className="rounded-lg border border-dashed border-vertice-border px-3 py-4 text-center text-xs text-vertice-ink/68">
             Arraste um card pra cá
           </p>
         )}

@@ -37,13 +37,24 @@ export function AddStageForm({ pipelineId }: { pipelineId: string }) {
         placeholder="Nome do estágio"
         className="w-40"
       />
-      <SelectInput value={cor} onChange={(e) => setCor(e.target.value)} className="w-28">
+      <div className="flex items-center gap-1.5" role="radiogroup" aria-label="Cor do estágio">
         {STAGE_COLOR_OPTIONS.map((c) => (
-          <option key={c.value} value={c.value}>
-            {c.label}
-          </option>
+          <button
+            key={c.value}
+            type="button"
+            role="radio"
+            aria-checked={cor === c.value}
+            aria-label={c.label}
+            title={c.label}
+            onClick={() => setCor(c.value)}
+            className={`h-6 w-6 rounded-full ${c.dot} transition-transform duration-150 ease-out ${
+              cor === c.value
+                ? "ring-2 ring-vertice-ink ring-offset-2 ring-offset-vertice-surface"
+                : "hover:scale-110"
+            }`}
+          />
         ))}
-      </SelectInput>
+      </div>
       <SelectInput
         value={tipo}
         onChange={(e) => setTipo(e.target.value as StageTipo)}

@@ -196,11 +196,11 @@ async function createCustomerIfMissing(
   supabase: Awaited<ReturnType<typeof createClient>>,
   deal: Deal
 ): Promise<boolean> {
-  const { data: existing } = await supabase.from("customers").select("*");
-  const already = (existing ?? []).some(
-    (c: { deal_id: string }) => c.deal_id === deal.id
-  );
-  if (already) return false;
+  const { data: existing } = await supabase
+    .from("customers")
+    .select("*")
+    .eq("deal_id", deal.id);
+  if ((existing ?? []).length > 0) return false;
 
   await supabase.from("customers").insert({
     deal_id: deal.id,

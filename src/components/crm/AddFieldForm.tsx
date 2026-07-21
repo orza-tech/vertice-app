@@ -66,7 +66,7 @@ export function AddFieldForm({ pipelineId }: { pipelineId: string }) {
           className="w-56"
         />
       )}
-      <label className="flex items-center gap-1.5 pb-2.5 text-xs text-vertice-ink/60">
+      <label className="flex items-center gap-1.5 pb-2.5 text-xs text-vertice-ink/68">
         <input
           type="checkbox"
           checked={obrigatorio}

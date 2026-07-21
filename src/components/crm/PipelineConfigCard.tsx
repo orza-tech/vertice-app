@@ -55,7 +55,7 @@ export function PipelineConfigCard({ pipeline }: { pipeline: PipelineWithDetails
       {error && <p className="text-xs text-vertice-danger">{error}</p>}
 
       <div>
-        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-vertice-ink/50">
+        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-vertice-ink/68">
           Estágios
         </h3>
         <ul className="mb-3 flex flex-wrap gap-2">
@@ -84,12 +84,12 @@ export function PipelineConfigCard({ pipeline }: { pipeline: PipelineWithDetails
       </div>
 
       <div>
-        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-vertice-ink/50">
+        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-vertice-ink/68">
           Campos personalizados
         </h3>
         <ul className="mb-3 flex flex-col divide-y divide-vertice-border">
           {pipeline.fields.length === 0 && (
-            <li className="py-2 text-sm text-vertice-ink/40">Nenhum campo ainda.</li>
+            <li className="py-2 text-sm text-vertice-ink/68">Nenhum campo ainda.</li>
           )}
           {pipeline.fields.map((field) => (
             <li key={field.id} className="flex items-center justify-between gap-2 py-2">
@@ -97,12 +97,12 @@ export function PipelineConfigCard({ pipeline }: { pipeline: PipelineWithDetails
                 {field.nome}{" "}
                 <Badge>{FIELD_TIPO_LABELS[field.tipo]}</Badge>{" "}
                 {field.obrigatorio && (
-                  <span className="text-xs text-vertice-ink/40">obrigatório</span>
+                  <span className="text-xs text-vertice-ink/68">obrigatório</span>
                 )}
               </span>
               <button
                 onClick={() => deleteField(field.id)}
-                className="text-xs text-vertice-ink/40 transition-colors duration-150 hover:text-vertice-danger"
+                className="text-xs text-vertice-ink/68 transition-colors duration-150 hover:text-vertice-danger"
               >
                 Remover
               </button>

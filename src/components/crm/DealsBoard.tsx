@@ -66,7 +66,7 @@ export function DealsBoard({
 
   if (pipelines.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-vertice-border p-10 text-center text-sm text-vertice-ink/60">
+      <div className="rounded-2xl border border-dashed border-vertice-border p-10 text-center text-sm text-vertice-ink/68">
         Nenhum pipeline configurado ainda.{" "}
         <a href="/configuracoes" className="text-vertice-teal-deep underline">
           Configure o primeiro pipeline
@@ -95,7 +95,7 @@ export function DealsBoard({
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vertice-teal focus-visible:ring-offset-2 focus-visible:ring-offset-vertice-bg ${
                 activePipelineId === p.id
                   ? "bg-vertice-ink text-vertice-bg"
-                  : "bg-vertice-surface text-vertice-ink/60 hover:text-vertice-ink"
+                  : "bg-vertice-surface text-vertice-ink/68 hover:text-vertice-ink"
               }`}
             >
               {p.nome}
@@ -118,7 +118,7 @@ export function DealsBoard({
               className={`rounded-md px-3 py-1.5 text-sm transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vertice-teal ${
                 view === "lista"
                   ? "bg-vertice-ink/10 text-vertice-ink"
-                  : "text-vertice-ink/50 hover:text-vertice-ink"
+                  : "text-vertice-ink/68 hover:text-vertice-ink"
               }`}
             >
               Lista
@@ -130,7 +130,7 @@ export function DealsBoard({
               className={`rounded-md px-3 py-1.5 text-sm transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vertice-teal ${
                 view === "kanban"
                   ? "bg-vertice-ink/10 text-vertice-ink"
-                  : "text-vertice-ink/50 hover:text-vertice-ink"
+                  : "text-vertice-ink/68 hover:text-vertice-ink"
               }`}
             >
               Kanban

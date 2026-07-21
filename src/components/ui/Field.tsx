@@ -1,7 +1,7 @@
 import type { InputHTMLAttributes, ReactNode, SelectHTMLAttributes } from "react";
 
 const fieldBase =
-  "w-full rounded-lg border bg-vertice-surface px-4 py-2.5 text-sm text-vertice-ink placeholder:text-vertice-ink/40 transition-colors duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-vertice-teal disabled:opacity-50";
+  "w-full rounded-lg border bg-vertice-surface px-4 py-2.5 text-sm text-vertice-ink placeholder:text-vertice-ink/70 transition-colors duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-vertice-teal disabled:opacity-50";
 
 function borderFor(hasError?: boolean) {
   return hasError

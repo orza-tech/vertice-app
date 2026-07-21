@@ -30,7 +30,7 @@ export function VerticeLogo({
         <path d="M22 2L40 34" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
       </svg>
       <span className={`font-serif tracking-[0.3em] ${word}`}>VÉRTICE</span>
-      <span className={`${caption} tracking-[0.25em] uppercase text-vertice-ink/55`}>
+      <span className={`${caption} tracking-[0.25em] uppercase text-vertice-ink/68`}>
         Mentoria Estratégica
       </span>
     </div>

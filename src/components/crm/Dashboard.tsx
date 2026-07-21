@@ -84,9 +84,9 @@ export function Dashboard({
                       {stage.nome}
                     </span>
                     <p className="mt-3 text-xl font-semibold">{formatCurrency(valorTotal)}</p>
-                    <p className="text-xs text-vertice-ink/50">{stageDeals.length} negócio(s)</p>
+                    <p className="text-xs text-vertice-ink/68">{stageDeals.length} negócio(s)</p>
                     {conversao !== undefined && (
-                      <p className="mt-1 text-xs text-vertice-ink/40">
+                      <p className="mt-1 text-xs text-vertice-ink/68">
                         {conversao}% chegaram aqui vindos do estágio anterior
                       </p>
                     )}
@@ -105,7 +105,7 @@ export function Dashboard({
             <button
               onClick={() => setGranularity("semana")}
               className={`rounded-md px-3 py-1.5 text-sm transition-colors duration-150 ${
-                granularity === "semana" ? "bg-vertice-ink/10 text-vertice-ink" : "text-vertice-ink/50 hover:text-vertice-ink"
+                granularity === "semana" ? "bg-vertice-ink/10 text-vertice-ink" : "text-vertice-ink/68 hover:text-vertice-ink"
               }`}
             >
               Semana
@@ -113,7 +113,7 @@ export function Dashboard({
             <button
               onClick={() => setGranularity("mes")}
               className={`rounded-md px-3 py-1.5 text-sm transition-colors duration-150 ${
-                granularity === "mes" ? "bg-vertice-ink/10 text-vertice-ink" : "text-vertice-ink/50 hover:text-vertice-ink"
+                granularity === "mes" ? "bg-vertice-ink/10 text-vertice-ink" : "text-vertice-ink/68 hover:text-vertice-ink"
               }`}
             >
               Mês
@@ -122,10 +122,10 @@ export function Dashboard({
         </div>
 
         {periodStats.length === 0 ? (
-          <p className="text-sm text-vertice-ink/50">Nenhum negócio ganho ou perdido ainda.</p>
+          <p className="text-sm text-vertice-ink/68">Nenhum negócio ganho ou perdido ainda.</p>
         ) : (
           <table className="w-full text-left text-sm">
-            <thead className="border-b border-vertice-border text-xs uppercase tracking-wide text-vertice-ink/50">
+            <thead className="border-b border-vertice-border text-xs uppercase tracking-wide text-vertice-ink/68">
               <tr>
                 <th className="py-2 pr-4 font-medium">Período</th>
                 <th className="py-2 pr-4 font-medium">Ganho</th>

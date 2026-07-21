@@ -17,7 +17,7 @@ export function CadastroPublico({ fields }: { fields: FieldDefinition[] }) {
           ✓
         </div>
         <h1 className="text-xl font-semibold">Cadastro recebido!</h1>
-        <p className="text-sm text-vertice-ink/60">
+        <p className="text-sm text-vertice-ink/68">
           Obrigado pelo interesse no Vértice. Nossa equipe vai entrar em
           contato em breve pelo WhatsApp ou e-mail informado.
         </p>
@@ -31,7 +31,7 @@ export function CadastroPublico({ fields }: { fields: FieldDefinition[] }) {
       <h1 className="mb-1 text-center text-lg font-semibold">
         Quero conhecer o Vértice
       </h1>
-      <p className="mb-6 text-center text-sm text-vertice-ink/60">
+      <p className="mb-6 text-center text-sm text-vertice-ink/68">
         Preencha seus dados e nossa equipe entra em contato.
       </p>
       <DealForm

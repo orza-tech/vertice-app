@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/Badge";
+import { ScrollFade } from "@/components/ui/ScrollFade";
 import { stageColorClasses, type Deal, type FieldDefinition, type Stage } from "@/lib/crm/schema";
 
 function formatCurrency(value: number) {
@@ -17,9 +18,9 @@ export function DealsTable({
   onMoveDeal: (dealId: string, stageId: string) => void;
 }) {
   return (
-    <section className="overflow-x-auto rounded-2xl border border-vertice-border bg-vertice-surface">
+    <ScrollFade className="rounded-2xl border border-vertice-border bg-vertice-surface">
       <table className="w-full min-w-[960px] text-left text-sm">
-        <thead className="border-b border-vertice-border text-xs uppercase tracking-wide text-vertice-ink/50">
+        <thead className="border-b border-vertice-border text-xs uppercase tracking-wide text-vertice-ink/68">
           <tr>
             <th className="px-4 py-3 font-medium">Nome</th>
             <th className="px-4 py-3 font-medium">Empresa</th>
@@ -45,7 +46,7 @@ export function DealsTable({
                 <td className="px-4 py-3">{deal.nome_empresa}</td>
                 <td className="px-4 py-3">
                   <div>{deal.email}</div>
-                  <div className="text-vertice-ink/50">{deal.whatsapp}</div>
+                  <div className="text-vertice-ink/68">{deal.whatsapp}</div>
                 </td>
                 <td className="px-4 py-3">{formatCurrency(deal.valor)}</td>
                 <td className="px-4 py-3">
@@ -76,8 +77,8 @@ export function DealsTable({
           ) : (
             <tr>
               <td colSpan={6 + fields.length} className="px-4 py-14 text-center">
-                <p className="text-sm text-vertice-ink/60">Nenhum negócio neste pipeline ainda.</p>
-                <p className="mt-1 text-xs text-vertice-ink/40">
+                <p className="text-sm text-vertice-ink/68">Nenhum negócio neste pipeline ainda.</p>
+                <p className="mt-1 text-xs text-vertice-ink/68">
                   Adicione um manualmente ou compartilhe o link de cadastro.
                 </p>
               </td>
@@ -85,6 +86,6 @@ export function DealsTable({
           )}
         </tbody>
       </table>
-    </section>
+    </ScrollFade>
   );
 }

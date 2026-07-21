@@ -1,8 +1,6 @@
-import Link from "next/link";
 import { getCanais, createCanal, deleteCanal } from "@/lib/canais/actions";
-import { VerticeLogo } from "@/components/VerticeLogo";
+import { AppHeader } from "@/components/AppHeader";
 import { Button } from "@/components/ui/Button";
-import { buttonClasses } from "@/components/ui/buttonStyles";
 import { TextInput } from "@/components/ui/Field";
 
 export const metadata = {
@@ -14,17 +12,12 @@ export default async function CanaisPage() {
 
   return (
     <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-4 py-10">
-      <header className="flex flex-wrap items-center justify-between gap-4">
-        <VerticeLogo size="sm" className="items-start text-left" />
-        <Link href="/leads" className={buttonClasses("secondary")}>
-          Voltar para leads
-        </Link>
-      </header>
+      <AppHeader active="/canais" />
 
       <section className="flex flex-col gap-6 rounded-2xl border border-vertice-border bg-vertice-surface p-6">
         <div>
           <h1 className="text-lg font-semibold">Canais de origem</h1>
-          <p className="mt-1 text-sm text-vertice-ink/60">
+          <p className="mt-1 text-sm text-vertice-ink/68">
             Canais usados para indicar de onde veio cada oportunidade
             cadastrada manualmente. Cadastros feitos pelo link público
             entram automaticamente como &quot;Evento&quot;.

@@ -28,7 +28,7 @@ export function DealCard({ deal, fields }: { deal: Deal; fields: FieldDefinition
       <div className="flex items-start justify-between gap-2">
         <div>
           <p className="font-medium">{deal.nome_contato}</p>
-          <p className="text-vertice-ink/60">{deal.nome_empresa}</p>
+          <p className="text-vertice-ink/68">{deal.nome_empresa}</p>
         </div>
         {deal.valor > 0 && (
           <span className="whitespace-nowrap text-xs font-semibold text-vertice-teal-pressed">
@@ -44,7 +44,7 @@ export function DealCard({ deal, fields }: { deal: Deal; fields: FieldDefinition
         })}
         <Badge tone="accent">{deal.canal}</Badge>
       </div>
-      <div className="mt-2 text-xs text-vertice-ink/50">
+      <div className="mt-2 text-xs text-vertice-ink/68">
         <div>{deal.email}</div>
         <div>{deal.whatsapp}</div>
       </div>

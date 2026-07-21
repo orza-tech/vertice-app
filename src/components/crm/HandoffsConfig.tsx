@@ -37,7 +37,7 @@ export function HandoffsConfig({
     <section className="flex flex-col gap-4 rounded-2xl border border-vertice-border bg-vertice-surface p-6">
       <div>
         <h2 className="text-lg font-semibold">Entregas entre pipelines</h2>
-        <p className="mt-1 text-sm text-vertice-ink/60">
+        <p className="mt-1 text-sm text-vertice-ink/68">
           Quando um negócio entra no estágio de saída, ele é movido
           automaticamente para o pipeline e estágio de entrada configurados.
         </p>
@@ -45,7 +45,7 @@ export function HandoffsConfig({
 
       <ul className="flex flex-col divide-y divide-vertice-border">
         {handoffs.length === 0 && (
-          <li className="py-2 text-sm text-vertice-ink/40">Nenhuma entrega configurada.</li>
+          <li className="py-2 text-sm text-vertice-ink/68">Nenhuma entrega configurada.</li>
         )}
         {handoffs.map((h) => (
           <li key={h.id} className="flex items-center justify-between gap-2 py-2 text-sm">
@@ -54,7 +54,7 @@ export function HandoffsConfig({
             </span>
             <button
               onClick={() => deleteHandoff(h.id)}
-              className="text-xs text-vertice-ink/40 transition-colors duration-150 hover:text-vertice-danger"
+              className="text-xs text-vertice-ink/68 transition-colors duration-150 hover:text-vertice-danger"
             >
               Remover
             </button>
